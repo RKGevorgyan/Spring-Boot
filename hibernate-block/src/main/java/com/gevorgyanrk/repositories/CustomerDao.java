@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ProductDao {
+public class CustomerDao {
+
     private FactoryBuilder factory;
     private Session session = null;
 
@@ -19,35 +20,35 @@ public class ProductDao {
         this.factory = factory;
     }
 
-    public Product getProductById(Long id) {
-        Product product;
+    public Customer getCustomerById(Long id) {
+        Customer customer;
         try {
             session = factory.getFactory().getCurrentSession();
             session.beginTransaction();
-            product = session.get(Product.class, id);
+            customer = session.get(Customer.class, id);
             session.getTransaction().commit();
         } finally {
             if (session != null) {
                 session.close();
             }
         }
-        return product;
+        return customer;
     }
 
-    public List<Customer> getProductCustomers(Long id) {
-        List<Customer> customerList = null;
-        Product product;
+    public List<Product> getCustomerProducts(Long id) {
+        List<Product> tmpList = null;
+        Customer customer;
         try {
             session = factory.getFactory().getCurrentSession();
             session.beginTransaction();
-            product = session.get(Product.class, id);
-            customerList = product.getCustomers();
+            customer = session.get(Customer.class, id);
+            tmpList = customer.getProducts();
             session.getTransaction().commit();
         } finally {
             if (session != null) {
                 session.close();
             }
         }
-        return customerList;
+        return tmpList;
     }
 }
