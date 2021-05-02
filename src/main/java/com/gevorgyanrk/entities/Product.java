@@ -1,11 +1,26 @@
 package com.gevorgyanrk.entities;
 
 import java.math.BigDecimal;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "products")
 public class Product {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column
+	@NoNull
 	private String name;
+
+	@Column
+	@NoNull
 	private String description;
+
+	@Column
+	@NoNull
 	private BigDecimal price;
 
 	public Product() {
