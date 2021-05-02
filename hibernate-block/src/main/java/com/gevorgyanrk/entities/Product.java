@@ -1,7 +1,9 @@
 package com.gevorgyanrk.entities;
 
-import java.math.BigDecimal;
+import lombok.NonNull;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "products")
@@ -12,15 +14,15 @@ public class Product {
 	private Long id;
 
 	@Column
-	@NoNull
+	@NonNull
 	private String name;
 
 	@Column
-	@NoNull
+	@NonNull
 	private String description;
 
 	@Column
-	@NoNull
+	@NonNull
 	private BigDecimal price;
 
 	public Product() {
